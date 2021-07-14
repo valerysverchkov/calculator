@@ -1,0 +1,7 @@
+ext:
+  calculatorUri: http://www.dneonline.com/calculator.asmx
+  soapAction:
+    add: http://tempuri.org/Add
+    multiply: http://tempuri.org/Multiply
+    subtract: http://tempuri.org/Subtract
+    divide: http://tempuri.org/Divide
