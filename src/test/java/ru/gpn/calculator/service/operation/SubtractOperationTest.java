@@ -30,7 +30,7 @@ class SubtractOperationTest {
     private ArgumentCaptor<Subtract> subtractArgumentCaptor;
 
     @Test
-    public void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation(){
+    void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation() {
         final Integer expectedFirstNumber = 1;
         final Integer expectedSecondNumber = 2;
         final Integer expectedResult = 2;

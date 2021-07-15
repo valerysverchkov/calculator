@@ -30,7 +30,7 @@ class DivideOperationTest {
     private ArgumentCaptor<Divide> divideArgumentCaptor;
 
     @Test
-    public void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation(){
+    void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation() {
         final Integer expectedFirstNumber = 1;
         final Integer expectedSecondNumber = 2;
         final Integer expectedResult = 2;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.gpn.calculator.model.CalculateRequest;
 import ru.gpn.calculator.model.CalculateResponse;
 import ru.gpn.calculator.service.CalculatorService;
+import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,7 +17,7 @@ public class CalculateController {
     private final CalculatorService calculatorService;
 
     @PostMapping("/calculateSync")
-    public @ResponseBody CalculateResponse calculateSync(@RequestBody CalculateRequest calculateRequest) {
+    public @ResponseBody CalculateResponse calculateSync(@RequestBody @Valid CalculateRequest calculateRequest) {
         return calculatorService.calculate(calculateRequest);
     }
 }

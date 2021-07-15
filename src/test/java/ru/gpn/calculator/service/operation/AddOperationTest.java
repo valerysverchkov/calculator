@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 class AddOperationTest {
 
     @InjectMocks
-    private AddOperation addOpertion;
+    private AddOperation addOperation;
 
     @Mock
     private CalculatorClient calculatorClient;
@@ -30,7 +30,7 @@ class AddOperationTest {
     private ArgumentCaptor<Add> addArgumentCaptor;
 
     @Test
-    public void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation(){
+    void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation(){
         final Integer expectedFirstNumber = 1;
         final Integer expectedSecondNumber = 2;
         final Integer expectedResult = 2;
@@ -40,7 +40,7 @@ class AddOperationTest {
         when(calculatorClient.getResultOperation(any(Add.class), any()))
                 .thenReturn(addResponse);
 
-        CalculateResponse calculate = addOpertion.calculate(expectedFirstNumber, expectedSecondNumber);
+        CalculateResponse calculate = addOperation.calculate(expectedFirstNumber, expectedSecondNumber);
 
         verify(calculatorClient).getResultOperation(addArgumentCaptor.capture(), any());
         Add actualAdd = addArgumentCaptor.getValue();

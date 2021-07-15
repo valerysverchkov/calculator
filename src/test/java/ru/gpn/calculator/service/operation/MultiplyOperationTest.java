@@ -30,7 +30,7 @@ class MultiplyOperationTest {
     private ArgumentCaptor<Multiply> multiplyArgumentCaptor;
 
     @Test
-    public void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation(){
+    void whenCallCalculateThenCallCalculatorClientWithExpectedParamsAndReturnExpectedResultOperation() {
         final Integer expectedFirstNumber = 1;
         final Integer expectedSecondNumber = 2;
         final Integer expectedResult = 2;
@@ -49,5 +49,5 @@ class MultiplyOperationTest {
 
         Assertions.assertEquals(expectedResult, calculate.getResultNumber());
     }
-    
+
 }
