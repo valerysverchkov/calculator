@@ -13,6 +13,7 @@ import ru.gpn.calculator.model.CalculateResponse;
 import ru.gpn.calculator.service.operation.Operation;
 import java.util.Map;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,6 +27,9 @@ class CalculatorServiceImplTest {
 
     @Mock
     private Map<String, Operation> operations;
+
+    @Mock
+    private CacheService cacheService;
 
     @Mock
     private Operation operation;
@@ -42,13 +46,16 @@ class CalculatorServiceImplTest {
         when(operations.get(MOCK_OPERATION.name()))
                 .thenReturn(operation);
 
-        final Integer expectedResultNumber = 2;
+        final Integer expectedResultNumber = 3;
         CalculateResponse calculateResponse = new CalculateResponse();
         calculateResponse.setResultNumber(expectedResultNumber);
         when(operation.calculate(expectedFirstNumber, expectedSecondNumber))
                 .thenReturn(calculateResponse);
 
         CalculateResponse actualResult = calculatorService.calculate(calculateRequest);
+
+        verify(cacheService).findResultOperation(calculateRequest);
+        verify(cacheService).saveResultOperation(calculateRequest, calculateResponse);
 
         Assertions.assertEquals(expectedResultNumber, actualResult.getResultNumber());
     }

@@ -4,5 +4,6 @@ ARG JAR_IMAGE=calculator.jar
 ARG JAR_FILE=build/libs/calculator-0.1.jar
 WORKDIR /opt/app
 COPY ${JAR_FILE} ${JAR_IMAGE}
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "calculator.jar"]
 

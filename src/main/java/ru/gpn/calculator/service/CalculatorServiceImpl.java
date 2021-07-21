@@ -12,15 +12,29 @@ import java.util.Map;
 class CalculatorServiceImpl implements CalculatorService {
 
     private final Map<String, Operation> operations;
+    private final CacheService cacheService;
 
     @Override
     public CalculateResponse calculate(CalculateRequest request) {
+
+        CalculateResponse resultOperation = cacheService.findResultOperation(request);
+        if (resultOperation != null) {
+            return resultOperation;
+        }
+
         Operation operation = operations.get(request.getCalculateOperation().name());
         if (operation == null) {
             CalculateResponse calculateResponse = new CalculateResponse();
             calculateResponse.setErrorMessage(request.getCalculateOperation().name() + " is not supported");
             return calculateResponse;
         }
-        return operation.calculate(request.getFirstNumber(), request.getSecondNumber());
+
+        CalculateResponse response = operation.calculate(request.getFirstNumber(), request.getSecondNumber());
+        if (response != null
+                && response.getResultNumber() != null) {
+            cacheService.saveResultOperation(request, response);
+        }
+
+        return response;
     }
 }

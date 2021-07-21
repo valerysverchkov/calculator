@@ -5,3 +5,7 @@ ext:
     multiply: http://tempuri.org/Multiply
     subtract: http://tempuri.org/Subtract
     divide: http://tempuri.org/Divide
+spring:
+  redis:
+    host: 0.0.0.0
+    port: 6379
