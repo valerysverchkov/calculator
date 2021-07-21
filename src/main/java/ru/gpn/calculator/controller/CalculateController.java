@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ws.client.WebServiceClientException;
 import ru.gpn.calculator.model.CalculateRequest;
 import ru.gpn.calculator.model.CalculateResponse;
 import ru.gpn.calculator.service.CalculatorService;
@@ -53,7 +54,14 @@ class CalculateController {
     @ExceptionHandler(InvalidFormatException.class)
     public CalculateResponse handleInvalidFormatException(InvalidFormatException e) {
         CalculateResponse calculateResponse = new CalculateResponse();
-        calculateResponse.setErrorMessage("\"" + e.getValue().toString() + "\" is not valid");
+        calculateResponse.setErrorMessage("'" + e.getValue().toString() + "' is not valid");
+        return calculateResponse;
+    }
+
+    @ExceptionHandler(WebServiceClientException.class)
+    public CalculateResponse handleWebServiceClientException(WebServiceClientException e) {
+        CalculateResponse calculateResponse = new CalculateResponse();
+        calculateResponse.setErrorMessage("Calculator Web Service returned error: " + e.getLocalizedMessage());
         return calculateResponse;
     }
 

@@ -62,6 +62,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.testcontainers:junit-jupiter'
+    implementation 'org.apache.httpcomponents:httpclient'
     jaxb "com.sun.xml.bind:jaxb-xjc:2.1.7"
 }
 

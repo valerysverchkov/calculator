@@ -1,11 +1,16 @@
 ext:
+  readTimeout: 5000
+  connectionTimeout: 10000
   calculatorUri: http://www.dneonline.com/calculator.asmx
   soapAction:
     add: http://tempuri.org/Add
     multiply: http://tempuri.org/Multiply
     subtract: http://tempuri.org/Subtract
     divide: http://tempuri.org/Divide
+
 spring:
   redis:
-    host: 0.0.0.0
     port: 6379
+    host: localhost
+  application:
+    name: calculator-service
